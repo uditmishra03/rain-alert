@@ -1,13 +1,16 @@
+import os
+
 import requests
 from twilio.rest import Client
 
-api_key = "71dbe179ffa19771c15ad090befe3da4"
 # MY_LAT = 13.00  # Your latitude
 # MY_LONG = 77.583333  # Your longitude
 MY_LAT = 43.610767  # Test Paris latitude
 MY_LONG = 3.876716  # Test Paris longitude
+
+api_key = os.environ.get("OWM_KEY") # Only if the api key is added to envtvariable.
+auth_token = os.environ.get("AUTH_TOKEN")
 account_sid = "ACf21e6506da5233d77a936d156f5890db"
-auth_token = "10d858220369bb30fc736fe4e1ab6327"
 PHONE_NUM = "+17627603600"
 
 parameters = {
@@ -37,6 +40,6 @@ if will_rain:
         .create(
         body="It's going to rain today. Remember to bring an ☔.",
         from_=PHONE_NUM,
-        to='+919886605789'
+        to="+919886605789"
     )
     print(message.status)
